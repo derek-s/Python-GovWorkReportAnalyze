@@ -15,6 +15,7 @@ def cutText(text):
     :return: 词
     """
 
+    jieba.load_userdict("userDict.txt") # 加载自定义词典
     cutList = jieba.cut(text.lower())
     wordsArray = []
     for word in cutList:
