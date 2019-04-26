@@ -10,10 +10,12 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fManager
 
 
-def histogram(wordData, title):
+def histogram(wordData, title, filename):
     """
     创建柱状图
     :param wordData: 分词统计后数据
+    :param title: 图标题
+    :param filename: 图文件名
     :return: None
     """
     # wordData转numpy数组并作矩阵转置
@@ -52,5 +54,5 @@ def histogram(wordData, title):
 
     # 导入关键字频次数据，设置对齐方式
     ax.barh(barPositions, tmp[1][::-1].astype(int).tolist(), 0.5, align="center")
-    plt.savefig("histogram.png")
+    plt.savefig(filename + ".png")
     plt.show()

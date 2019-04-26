@@ -12,10 +12,11 @@ import matplotlib.pyplot as plt
 from cutTextUtils import cutText
 
 
-def wCloudImage(text):
+def wCloudImage(text, filename):
     """
     根据分词生成词云
     :param text: 待分词文本
+    :param filename: 图文件名
     :return: None
     """
 
@@ -38,5 +39,5 @@ def wCloudImage(text):
 
     # 显示并保存图片
     plt.imshow(myImage)
-    plt.savefig("wclound1.png")
+    plt.savefig(filename + ".png")
     plt.show()
