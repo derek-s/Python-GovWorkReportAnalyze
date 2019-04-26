@@ -16,7 +16,7 @@ def wCloudImage(text):
     """
     根据分词生成词云
     :param text: 待分词文本
-    :return: 词云图片
+    :return: None
     """
 
     # 分词
