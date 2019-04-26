@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fManager
 
 
-def histogram(wordData):
+def histogram(wordData, title):
     """
     创建柱状图
     :param wordData: 分词统计后数据
@@ -26,10 +26,10 @@ def histogram(wordData):
     font = fManager.FontProperties(fname="wqy.ttf")
 
     # 设置图表标题
-    plt.title("2012-2019年某市某区工作报告词频统计", fontproperties=font, fontsize=20)
+    plt.title(title, fontproperties=font, fontsize=20)
 
     # 设置x轴
-    ax.set_xlabel("出现次数", fontproperties=font, fontsize=20, color="gray")
+    ax.set_xlabel("出现次数", fontproperties=font, fontsize=20, color="black")
 
     # 调整图表四周框线颜色
     ax.spines['bottom'].set_color("gray")
@@ -52,5 +52,5 @@ def histogram(wordData):
 
     # 导入关键字频次数据，设置对齐方式
     ax.barh(barPositions, tmp[1][::-1].astype(int).tolist(), 0.5, align="center")
-    plt.show()
     plt.savefig("histogram.png")
+    plt.show()

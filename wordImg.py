@@ -38,5 +38,5 @@ def wCloudImage(text):
 
     # 显示并保存图片
     plt.imshow(myImage)
-    plt.show()
     plt.savefig("wclound1.png")
+    plt.show()

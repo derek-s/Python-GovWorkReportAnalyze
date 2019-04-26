@@ -6,7 +6,47 @@
 # @File    : main.py
 
 from cutTextUtils import getTopnWords
+from frequency import frequency
+from wordImg import wCloudImage
+from histogram import histogram
 
 if __name__ == "__main__":
-    testStr = "新京报快讯（记者 陈沁涵）4月25日，第二届“一带一路”国际合作高峰论坛“设施联通”分论坛在北京举行。柬埔寨国务大臣兼公共工程和运输大臣孙占托在分论坛上发表讲话，他说，通过中国的帮助，柬埔寨已经开始建设国内第一条高速公路。中国的“一带一路”倡议为世界带来了繁荣。"
-    print(getTopnWords(testStr, 5))
+
+    fr = ""
+
+    filename = [
+        "reportData/2012.txt",
+        "reportData/2013.txt",
+        "reportData/2014.txt",
+        "reportData/2015.txt",
+        "reportData/2016.txt",
+        "reportData/2017.txt",
+        "reportData/2018.txt",
+        "reportData/2019.txt",
+    ]
+
+    # 处理文件编码
+    for eachFile in filename:
+        for encodeStr in ["utf-8", "gb18030", "gb2312", "gbk", "Error"]:
+            try:
+                fr += open(eachFile, "r", encoding=encodeStr).read()
+                break
+            except:
+                if encodeStr == "Error":
+                    raise Exception("file read error")
+                continue
+
+    print("计算频次最高的30个关键字")
+    for item in getTopnWords(fr, 30):
+        print(item)
+    print("=======================================")
+    print("提取权重大的30个关键字")
+    print(frequency(fr, 30))
+    print("=======================================")
+    print("生成词云")
+    wCloudImage(fr)
+    print("=======================================")
+    print("生成条状图")
+    histogram(getTopnWords(fr, 30), "2012-2019年某市某区政府工作报告词频统计")
+    print("=======================================")
+    print("执行完毕")
