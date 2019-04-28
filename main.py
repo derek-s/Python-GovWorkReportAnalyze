@@ -15,7 +15,6 @@ if __name__ == "__main__":
     fr = ""
 
     filename = [
-        "reportData/2012.txt",
         "reportData/2013.txt",
         "reportData/2014.txt",
         "reportData/2015.txt",
@@ -44,9 +43,9 @@ if __name__ == "__main__":
     print(frequency(fr, 30))
     print("=======================================")
     print("生成词云")
-    wCloudImage(fr, "wclound1")
+    wCloudImage(fr, "wclound2")
     print("=======================================")
     print("生成条状图")
-    histogram(getTopnWords(fr, 30), "2012-2019年某市某区政府工作报告词频统计", "histogram")
+    histogram(getTopnWords(fr, 30), "2013-2019年海拉尔区政府工作报告词频统计", "histogram2")
     print("=======================================")
     print("执行完毕")
