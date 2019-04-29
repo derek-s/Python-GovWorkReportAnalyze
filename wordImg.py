@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from cutTextUtils import cutText
 
 
-def wCloudImage(text, filename):
+def wCloudImage(text, filename, picTemplate):
     """
     根据分词生成词云
     :param text: 待分词文本
@@ -27,7 +27,7 @@ def wCloudImage(text, filename):
     # 加载字体
     font = "wqy.ttf"
     # 打开图片并将图片转为数组
-    pic = Image.open("map.jpg")
+    pic = Image.open(picTemplate)
     picArray = array(pic)
     # 生成词云
     myImage = wCloud.WordCloud(collocations=False, font_path=font, mask=picArray, background_color="white").generate(data)
