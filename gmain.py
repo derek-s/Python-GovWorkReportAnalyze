@@ -67,14 +67,31 @@ def getReportText(url):
 
 if __name__ == "__main__":
 
-    # content = ""
-    #
-    # urls = getAllReportUrls("http://www.gov.cn/guoqing/2006-02/16/content_2616810.htm")
-    # urls["2017"] = "http://www.gov.cn/premier/2017-03/16/content_5177940.htm"
-    # urls["2018"] = "http://www.gov.cn/zhuanti/2018lh/2018zfgzbg/zfgzbg.htm"
-    # urls["2019"] = "http://www.gov.cn/zhuanti/2019qglh/2019lhzfgzbg/index.htm"
-    # for itemUrl in urls:
-    #      content += getReportText(urls[itemUrl])
+    content = ""
+
+    urls = getAllReportUrls("http://www.gov.cn/guoqing/2006-02/16/content_2616810.htm")
+    urls["2017"] = "http://www.gov.cn/premier/2017-03/16/content_5177940.htm"
+    urls["2018"] = "http://www.gov.cn/zhuanti/2018lh/2018zfgzbg/zfgzbg.htm"
+    urls["2019"] = "http://www.gov.cn/zhuanti/2019qglh/2019lhzfgzbg/index.htm"
+    for itemUrl in urls:
+         content += getReportText(urls[itemUrl])
+
+    print("计算频次最高的20个关键字")
+    for item in getTopnWords(content, 20):
+        print(str(item[0]) + ":" + str(item[1]))
+    print("=======================================")
+    print("提取权重大的20个关键字")
+    print(frequency(content, 20))
+    print("=======================================")
+    print("生成词云")
+    wCloudImage(content, "1954-2019-wclound", "chinamap.jpg")
+    print("=======================================")
+    print("生成条状图")
+    histogram(getTopnWords(content, 20), "1954-2019年政府工作报告词频统计", "1954-2019-histogram")
+    print("=======================================")
+    print("执行完毕")
+
+
 
     # 如果需要写入文件，使用以下代码
 
@@ -85,39 +102,39 @@ if __name__ == "__main__":
 
 
 
-    urls = getAllReportUrls("http://www.gov.cn/guoqing/2006-02/16/content_2616810.htm")
-    urls["2017"] = "http://www.gov.cn/premier/2017-03/16/content_5177940.htm"
-    urls["2018"] = "http://www.gov.cn/zhuanti/2018lh/2018zfgzbg/zfgzbg.htm"
-    urls["2019"] = "http://www.gov.cn/zhuanti/2019qglh/2019lhzfgzbg/index.htm"
-
-    yearsOne = ["1954", "1955", "1956", "1957", "1958", "1959", "1960", "1964"]
-    yearsTwo = ["1975", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985"]
-    yearsThree = ["1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996"]
-    yearsFour = ["1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007"]
-    yearsFive = ["2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"]
-
-    yearsList = [yearsOne, yearsTwo, yearsThree, yearsFour, yearsFive]
-
-    for years in yearsList:
-        content = ""
-        for year in years:
-            content += getReportText(urls[year])
-
-        yearInfo = years[0] + "-" + years[-1]
-
-        print(yearInfo)
-        print("=======================================")
-        print("计算频次最高的20个关键字")
-        for item in getTopnWords(content, 20):
-            print(item)
-        print("=======================================")
-        print("提取权重大的20个关键字")
-        print(frequency(content, 20))
-        print("=======================================")
-        print("生成词云")
-        wCloudImage(content, yearInfo + "-wclound")
-        print("=======================================")
-        print("生成条状图")
-        histogram(getTopnWords(content, 20), yearInfo + "年政府工作报告词频统计", yearInfo + "-histogram")
-        print("=======================================")
-        print("执行完毕")
+    # urls = getAllReportUrls("http://www.gov.cn/guoqing/2006-02/16/content_2616810.htm")
+    # urls["2017"] = "http://www.gov.cn/premier/2017-03/16/content_5177940.htm"
+    # urls["2018"] = "http://www.gov.cn/zhuanti/2018lh/2018zfgzbg/zfgzbg.htm"
+    # urls["2019"] = "http://www.gov.cn/zhuanti/2019qglh/2019lhzfgzbg/index.htm"
+    #
+    # yearsOne = ["1954", "1955", "1956", "1957", "1958", "1959", "1960", "1964"]
+    # yearsTwo = ["1975", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985"]
+    # yearsThree = ["1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996"]
+    # yearsFour = ["1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007"]
+    # yearsFive = ["2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019"]
+    #
+    # yearsList = [yearsOne, yearsTwo, yearsThree, yearsFour, yearsFive]
+    #
+    # for years in yearsList:
+    #     content = ""
+    #     for year in years:
+    #         content += getReportText(urls[year])
+    #
+    #     yearInfo = years[0] + "-" + years[-1]
+    #
+    #     print(yearInfo)
+    #     print("=======================================")
+    #     print("计算频次最高的20个关键字")
+    #     for item in getTopnWords(content, 20):
+    #         print(str(item[0]) + ":" + str(item[1]))
+    #     print("=======================================")
+    #     print("提取权重大的20个关键字")
+    #     print(frequency(content, 20))
+    #     print("=======================================")
+    #     print("生成词云")
+    #     wCloudImage(content, yearInfo + "-wclound", "chinamap.jpg")
+    #     print("=======================================")
+    #     print("生成条状图")
+    #     histogram(getTopnWords(content, 20), yearInfo + "年政府工作报告词频统计", yearInfo + "-histogram")
+    #     print("=======================================")
+    #     print("执行完毕")
